@@ -36,7 +36,8 @@ const generateItem = (listItem) => {
                     </label>
                 </span>
         `;
-  primaryList.appendChild(newItem);
+        primaryList.appendChild(newItem);
+        componentHandler.upgradeDom();
 };
 
 dummyData.forEach((listItem) => generateItem(listItem));
