@@ -43,18 +43,22 @@
         </nav>
       </div>
       <main class="mdl-layout__content">
-        <div>
-          <form id="addnew">
-            <div class="mdl-textfield mdl-js-textfield">
-              <input type="text" class="mdl-textfield__input" id="newtodo" />
-              <label for="newtodo" class="mdl-textfield__label"
-                >Add a new todo</label
-              >
-            </div>
-          </form>
-        </div>
+        
         <div id="listarea">
-          <ul class="mdl-list" id="primarylist"></ul>
+          <div class="list">
+            <h3>Primary List</h3>
+            <ul class="mdl-list" id="primarylist"></ul>
+            <div>
+              <form id="addnew">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input type="text" class="mdl-textfield__input" id="newtodo" />
+                  <label for="newtodo" class="mdl-textfield__label">
+                    Add a new todo
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </main>
     </div>
