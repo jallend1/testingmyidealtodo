@@ -11,10 +11,10 @@ const Header = () => {
           <nav className="mdl-navigation">
             <Link to="/" className="mdl-navigation__link">Home</Link>
             <Link to="/archive" className="mdl-navigation__link">Archive</Link>
+            <Link to="/about" className="mdl-navigation__link">About</Link>
             <a href="https://www.google.com/" className="mdl-navigation__link">
               Templates
             </a>
-            <Link to="/about" className="mdl-navigation__link">About</Link>
           </nav>
         </div>
       </header>
@@ -22,14 +22,10 @@ const Header = () => {
         <span className="mdl-layout--title">To Do</span>
         <nav className="mdl-navigation">
           <Link to="/" className="mdl-navigation__link">Home</Link>
-          <a href="https://www.google.com" className="mdl-navigation__link">
-            Archive
-          </a>
+          <Link to="/archive" className="mdl-navigation__link">Archive</Link>
+          <Link to="/about" className="mdl-navigation__link">About</Link>
           <a href="https://www.google.com" className="mdl-navigation__link">
             Templates
-          </a>
-          <a href="https://www.google.com" className="mdl-navigation__link">
-            About
           </a>
         </nav>
       </div>

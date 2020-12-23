@@ -1,12 +1,12 @@
 import React from "react";
 import NewTask from "./NewTask";
 
-const List = ({ title, author, content }) => {
+const List = ( {list: {title, author, contents, id}}) => {
   return (
     <>
-      <h3>{title}</h3>
+      <h3 key={id}>{title}</h3>
       <h4>By {author}</h4>
-      <p>{content}</p>
+      {contents.map((content, index) => <p key={id + (index / 10)}>{content}</p>)}
       <NewTask />
     </>
   );
