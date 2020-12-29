@@ -1,9 +1,9 @@
-import { Router } from '@reach/router';
+import { Router } from "@reach/router";
 
 import Header from "./Components/Header";
 import Dashboard from "./Components/Dashboard";
-import Archive from './Components/Archive';
-import About from './Components/About';
+import Archive from "./Components/Archive";
+import About from "./Components/About";
 
 function App() {
   return (
@@ -15,12 +15,6 @@ function App() {
           <Archive path="/archive" />
           <About path="/about" />
         </Router>
-
-        {/* <div id="listarea"> 
-            <div className="list">
-              <ul className="mdl-list" id="primarylist"></ul>
-            </div>
-          </div> */}
       </div>
     </>
   );

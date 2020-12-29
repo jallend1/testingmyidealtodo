@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from '@reach/router';
+import { Link } from "@reach/router";
 const Header = () => {
   return (
     <>
@@ -9,9 +9,15 @@ const Header = () => {
           <span className="mdl-layout__title">To Do</span>
           <div className="mdl-layout-spacer"></div>
           <nav className="mdl-navigation">
-            <Link to="/" className="mdl-navigation__link">Home</Link>
-            <Link to="/archive" className="mdl-navigation__link">Archive</Link>
-            <Link to="/about" className="mdl-navigation__link">About</Link>
+            <Link to="/" className="mdl-navigation__link">
+              Home
+            </Link>
+            <Link to="/archive" className="mdl-navigation__link">
+              Archive
+            </Link>
+            <Link to="/about" className="mdl-navigation__link">
+              About
+            </Link>
             <a href="https://www.google.com/" className="mdl-navigation__link">
               Templates
             </a>
@@ -21,9 +27,15 @@ const Header = () => {
       <div className="mdl-layout__drawer">
         <span className="mdl-layout--title">To Do</span>
         <nav className="mdl-navigation">
-          <Link to="/" className="mdl-navigation__link">Home</Link>
-          <Link to="/archive" className="mdl-navigation__link">Archive</Link>
-          <Link to="/about" className="mdl-navigation__link">About</Link>
+          <Link to="/" className="mdl-navigation__link">
+            Home
+          </Link>
+          <Link to="/archive" className="mdl-navigation__link">
+            Archive
+          </Link>
+          <Link to="/about" className="mdl-navigation__link">
+            About
+          </Link>
           <a href="https://www.google.com" className="mdl-navigation__link">
             Templates
           </a>
