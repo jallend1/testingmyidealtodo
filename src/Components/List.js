@@ -1,4 +1,3 @@
-import React from "react";
 import NewTask from "./NewTask";
 
 const List = ({ list: { title, author, contents, id } }) => {
