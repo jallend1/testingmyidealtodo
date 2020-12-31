@@ -7,7 +7,7 @@ import Archive from "./Components/Archive";
 import About from "./Components/About";
 
 function App() {
-  console.log(firebase.database())
+  console.log(firebase.firestore());
   return (
     <>
       <div className="mdl-layout mdl-js-layout">
