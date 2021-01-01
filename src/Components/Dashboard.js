@@ -1,4 +1,9 @@
+import firebase from '../config/firebase'
 import List from "./List";
+
+const refs = firebase.firestore().collection('tasklists')
+console.log(refs)
+
 
 const lists = [
   {
