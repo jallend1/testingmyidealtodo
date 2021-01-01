@@ -7,7 +7,8 @@ import Archive from "./Components/Archive";
 import About from "./Components/About";
 
 function App() {
-  console.log(firebase.firestore());
+  const db = firebase.firestore();
+  db.collection('tasklists').get().then(querySnapshot => querySnapshot.forEach(task => console.log(task.data())));
   return (
     <>
       <div className="mdl-layout mdl-js-layout">

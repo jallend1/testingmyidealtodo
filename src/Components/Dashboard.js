@@ -16,7 +16,6 @@ const lists = [
 ];
 
 const Dashboard = () => {
-  lists.map((list) => console.log(list));
   return (
     <>
       <main className="mdl-layout__content">
