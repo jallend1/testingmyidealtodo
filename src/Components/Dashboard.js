@@ -1,26 +1,28 @@
 import firebase from '../config/firebase'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import List from "./List";
 
-
-const retrieveLists = () => {
-  const taskListRef = firebase.firestore().collection('tasklists');
-  const todoLists = [];
-  taskListRef.get()
-  .then(querySnapshot => {
-    querySnapshot.forEach(list => {
-      const taskList = {};
-      taskList.id = list.id;
-      taskList.details = list.data();
-      todoLists.push(taskList)
-    });
-  })
-  return todoLists;
-}
-
-
 const Dashboard = () => {
-  const [taskLists, setTaskLists] = useState(retrieveLists);
+  const [taskLists, setTaskLists] = useState([]);
+  
+  //Pulls existing tasklists from Firebase and puts them in state
+  const retrieveLists = () => {
+    const taskListRef = firebase.firestore().collection('tasklists');
+    const todoLists = [];
+    taskListRef.get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(list => {
+        const taskList = {};
+        taskList.id = list.id;
+        taskList.details = list.data();
+        todoLists.push(taskList)
+      });
+      setTaskLists(todoLists);
+    });
+  }
+  
+  useEffect(retrieveLists, [taskLists, setTaskLists]);
+  
   return (
     <>
       <main className="mdl-layout__content">
