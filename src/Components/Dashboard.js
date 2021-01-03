@@ -7,18 +7,15 @@ const Dashboard = () => {
 
   const addNewTodo = e => {
     e.preventDefault();
-    console.log(taskLists);
     
     const listDetails = taskLists.find(item => item.id === e.target.id);
     listDetails.details.contents.push(e.target[0].value.trim());
     
     const taskListRef = firebase.firestore().collection('tasklists');
-    taskListRef.doc(e.target.id).set(listDetails.details).then(console.log('Completed!'));
-
-    // taskListRef.set(newItem).then('Completed!');
-    // taskLists.push(newItem);
-    // setTaskLists(taskLists);
-
+    taskListRef.doc(e.target.id)
+      .update({content: listDetails.details})
+      .then(console.log('Completed!'));
+    setTaskLists(taskLists);
     e.target.reset();
   }
 
