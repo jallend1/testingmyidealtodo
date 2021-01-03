@@ -4,6 +4,24 @@ import List from "./List";
 
 const Dashboard = () => {
   const [taskLists, setTaskLists] = useState([]);
+
+  const addNewTodo = e => {
+    e.preventDefault();
+    console.log(taskLists);
+    
+    const listDetails = taskLists.find(item => item.id === e.target.id);
+    listDetails.details.contents.push(e.target[0].value.trim());
+    
+    const taskListRef = firebase.firestore().collection('tasklists');
+    taskListRef.doc(e.target.id).set(listDetails.details).then(console.log('Completed!'));
+
+    // taskListRef.set(newItem).then('Completed!');
+    // taskLists.push(newItem);
+    // setTaskLists(taskLists);
+
+    e.target.reset();
+  }
+
   //Pulls existing tasklists from Firebase and puts them in state
   const retrieveLists = () => {
     const taskListRef = firebase.firestore().collection('tasklists');
@@ -28,7 +46,7 @@ const Dashboard = () => {
     <>
       <main className="mdl-layout__content">
         {taskLists.map((list) => (
-          <List list={list} key={list.id} />
+          <List list={list} key={list.id} listId={list.id} addNewTodo = {addNewTodo} />
         ))}
       </main>
     </>

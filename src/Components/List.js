@@ -1,7 +1,6 @@
 import NewTask from "./NewTask";
 
-const List = ({list}) => {
-  
+const List = ({list, addNewTodo}) => {
   return (
     <>
       <h3 key={list.id}>{list.details.title}</h3>
@@ -11,7 +10,7 @@ const List = ({list}) => {
           {content}
         </p>
         ))}
-      <NewTask />
+      <NewTask addNewTodo={addNewTodo} listId={list.id} />
     </>
   );
 };
