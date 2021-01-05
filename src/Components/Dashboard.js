@@ -8,31 +8,37 @@ const Dashboard = () => {
   const addNewTodo = e => {
     e.preventDefault();
     
-    const listDetails = taskLists.find(item => item.id === e.target.id);
-    listDetails.details.contents.push(e.target[0].value.trim());
+    // Extracts the id to add to the correct to-do list in Firebase
+    const id = e.target.id;
     
-    const taskListRef = firebase.firestore().collection('tasklists');
-    taskListRef.doc(e.target.id)
-      .update({content: listDetails.details})
+    // Matches firebase id to object
+    const listDetails = taskLists.find(item => item.id === id);
+    const newItem = e.target[0].value.trim();
+    
+    // Adds new item onto corresponding Firebase list
+    listDetails.content.push(newItem)
+
+    const db = firebase.firestore().collection('tasklists');
+    db.doc(id)
+      .update({content: listDetails.content})
       .then(console.log('Completed!'));
-    setTaskLists(taskLists);
     e.target.reset();
+
+    // setTaskLists(taskLists);
   }
 
   //Pulls existing tasklists from Firebase and puts them in state
   const retrieveLists = () => {
-    const taskListRef = firebase.firestore().collection('tasklists');
+    const db = firebase.firestore().collection('tasklists');
     if(taskLists.length === 0){
       const todoLists = [];
-      taskListRef.get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(list => {
-          const taskList = {};
-          taskList.id = list.id;
-          taskList.details = list.data();
-          todoLists.push(taskList)
+      db.onSnapshot(snapshot => {
+        snapshot.forEach(list => {
+          const newItem = list.data();
+          newItem.id = list.id;
+          todoLists.push(newItem);
+          setTaskLists(todoLists);
         });
-        setTaskLists(todoLists);
       });
     }
   }
