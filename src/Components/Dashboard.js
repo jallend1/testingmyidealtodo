@@ -23,22 +23,20 @@ const Dashboard = () => {
       .update({content: listDetails.content})
       .then(console.log('Completed!'));
     e.target.reset();
-
-    // setTaskLists(taskLists);
   }
 
   //Pulls existing tasklists from Firebase and puts them in state
   const retrieveLists = () => {
     const db = firebase.firestore().collection('tasklists');
     if(taskLists.length === 0){
-      const todoLists = [];
       db.onSnapshot(snapshot => {
+        const todoLists = [];
         snapshot.forEach(list => {
           const newItem = list.data();
           newItem.id = list.id;
           todoLists.push(newItem);
-          setTaskLists(todoLists);
         });
+        setTaskLists(todoLists);
       });
     }
   }
