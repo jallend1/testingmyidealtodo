@@ -2,7 +2,7 @@ import NewTask from "./NewTask";
 
 const List = ({list, addNewTodo, deleteToDo}) => {
   return (
-    <>
+    <div className="list">
       <h3 key={list.id}>{list.title}</h3>
       <h4>By {list.author}</h4>
         {list.content.map((content, index) => {
@@ -15,7 +15,7 @@ const List = ({list, addNewTodo, deleteToDo}) => {
           })
         }
       <NewTask addNewTodo={addNewTodo} listId={list.id} />
-    </>
+    </div>
   );
 };
 

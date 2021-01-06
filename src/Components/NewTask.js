@@ -1,5 +1,3 @@
-import List from "./List";
-
 const NewTask = ({ addNewTodo, listId }) => {
   
   return (  

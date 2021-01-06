@@ -12,9 +12,17 @@ code {
     monospace;
 }
 
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 2em;
+}
+
 .list {
-  max-width: 300px;
-  margin: 2em;
+  margin: auto;
+  text-align: center;
+  margin: 1em;
 }
 
 .list-item {
