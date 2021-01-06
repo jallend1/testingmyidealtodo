@@ -7,22 +7,27 @@ const Dashboard = () => {
 
   const addNewTodo = e => {
     e.preventDefault();
-    
     // Extracts the id to add to the correct to-do list in Firebase
     const id = e.target.id;
-    
     // Matches firebase id to object
     const listDetails = taskLists.find(item => item.id === id);
     const newItem = e.target[0].value.trim();
-    
     // Adds new item onto corresponding Firebase list
     listDetails.content.push(newItem)
-
     const db = firebase.firestore().collection('tasklists');
     db.doc(id)
-      .update({content: listDetails.content})
-      .then(console.log('Completed!'));
+      .update({content: listDetails.content});
     e.target.reset();
+  }
+
+  const deleteToDo = (itemToDelete, id) => {
+    const listIndex = taskLists.findIndex(item => item.id === id);      // Locates appropriate list
+    const listContents = taskLists[listIndex].content;                  
+    const itemIndex = listContents.indexOf(itemToDelete);               // Locates appropriate list item
+    listContents.splice(itemIndex, 1);                                  // Removes it
+    const db = firebase.firestore().collection('tasklists');
+    db.doc(id)
+      .update({content: listContents });
   }
 
   //Pulls existing tasklists from Firebase and puts them in state
@@ -47,7 +52,7 @@ const Dashboard = () => {
     <>
       <main className="mdl-layout__content">
         {taskLists.map((list) => (
-          <List list={list} key={list.id} listId={list.id} addNewTodo = {addNewTodo} />
+          <List list={list} key={list.id} listId={list.id} addNewTodo = {addNewTodo} deleteToDo = {deleteToDo} />
         ))}
       </main>
     </>

@@ -1,14 +1,15 @@
 import NewTask from "./NewTask";
 
-const List = ({list, addNewTodo}) => {
+const List = ({list, addNewTodo, deleteToDo}) => {
   return (
     <>
       <h3 key={list.id}>{list.title}</h3>
       <h4>By {list.author}</h4>
         {list.content.map((content, index) => {
            return (
-            <p key={list.id + (index * .1)}>
-            {content}
+            <p className="list-item" key={list.id + (index * .1)}>
+            <span>{content}</span>
+            <span onClick={() => deleteToDo(content, list.id)}>x</span>
             </p>
            )
           })
