@@ -1,6 +1,5 @@
 const NewTask = ({ addNewTodo, listId }) => {
-  
-  return (  
+  return (
     <form id={listId} onSubmit={addNewTodo}>
       <div className="mdl-textfield mdl-js-textfield">
         <input type="text" className="mdl-textfield__input" id="newtodo" />

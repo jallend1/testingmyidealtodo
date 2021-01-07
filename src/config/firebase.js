@@ -1,6 +1,6 @@
-import firebase from 'firebase/app';
+import firebase from "firebase/app";
 import "firebase/firestore";
-import myProjectConfig from './myProjectConfig';
+import myProjectConfig from "./myProjectConfig";
 
 firebase.initializeApp(myProjectConfig);
 
