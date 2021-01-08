@@ -9,7 +9,7 @@ const List = ({ list, addNewTodo, deleteToDo }) => {
         return (
           <p className="list-item" key={list.id + index * 0.1}>
             <span>{content}</span>
-            <span onClick={() => deleteToDo(content, list.id)}>x</span>
+            <span className="material-icons" onClick={() => deleteToDo(content, list.id)} >delete_forever</span>
           </p>
         );
       })}
