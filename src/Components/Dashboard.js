@@ -49,7 +49,7 @@ const Dashboard = () => {
   return (
     <>
       <main className="mdl-layout__content container">
-        {/* Populates only active lists and not archived */}
+        {/* Populates only active lists and not archived ones */}
         {taskLists.map((list) => {
           if(list.isActive){
             return <List list={list} key={list.id} listId={list.id} addNewTodo={addNewTodo} deleteToDo={deleteToDo} />
