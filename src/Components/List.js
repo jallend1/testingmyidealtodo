@@ -10,7 +10,7 @@ const List = ({ list, addNewTodo, deleteToDo }) => {
           <div className="list-item" key={list.id + index * 0.1}>
             <input type="checkbox" />
             <span>{content}</span>
-            <span className="material-icons" 
+            <span className="material-icons delete" 
               onClick={() => deleteToDo(content, list.id)}>
                 delete_forever
             </span>

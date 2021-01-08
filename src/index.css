@@ -29,3 +29,11 @@ code {
   display: flex;
   justify-content: space-between;
 }
+
+.delete {
+  color: red;
+}
+
+input:checked + span {
+  opacity: 20%;
+}
