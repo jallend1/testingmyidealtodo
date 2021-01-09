@@ -5,13 +5,16 @@ import List from "./List";
 const Dashboard = () => {
   const [taskLists, setTaskLists] = useState([]);
 
-  const addNewTodo = (e) => {
+  const addNewToDo = (e) => {
     e.preventDefault();
     // Extracts the id to add to the correct to-do list in Firebase
     const id = e.target.id;
     // Matches firebase id to object
     const listDetails = taskLists.find((item) => item.id === id);
-    const newItem = e.target[0].value.trim();
+    const newItem = {
+      item: e.target[0].value.trim(),
+      isUnfinished: true
+    };
     // Adds new item onto corresponding Firebase list
     listDetails.content.push(newItem);
     const db = firebase.firestore().collection("tasklists");
@@ -44,6 +47,16 @@ const Dashboard = () => {
     }
   };
 
+  //TODO Uncontrolled element! Remedy this mess!
+  
+  const updateToDo = (id, index) => {
+    const listIndex = taskLists.findIndex(item => item.id === id);
+    const taskList = taskLists[listIndex].content
+    taskList[index].isUnfinished = !taskList[index].isUnfinished;
+    const db = firebase.firestore().collection('tasklists');
+    db.doc(id).update({content: taskList})
+  }
+
   useEffect(retrieveLists, [taskLists, setTaskLists]);
 
   return (
@@ -52,7 +65,13 @@ const Dashboard = () => {
         {/* Populates only active lists and not archived ones */}
         {taskLists.map((list) => {
           if(list.isActive){
-            return <List list={list} key={list.id} listId={list.id} addNewTodo={addNewTodo} deleteToDo={deleteToDo} />
+            return <List 
+              list={list} 
+              key={list.id} 
+              listId={list.id} 
+              addNewToDo={addNewToDo} 
+              updateToDo={updateToDo}
+              deleteToDo={deleteToDo} />
           }
           return null;
         })

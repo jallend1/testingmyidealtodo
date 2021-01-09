@@ -1,6 +1,6 @@
 import NewTask from "./NewTask";
 
-const List = ({ list, addNewTodo, deleteToDo }) => {
+const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
   return (
     <div className="list">
       <h3 key={list.id}>{list.title}</h3>
@@ -8,7 +8,10 @@ const List = ({ list, addNewTodo, deleteToDo }) => {
       {list.content.map((content, index) => {
         return (
           <div className="list-item" key={list.id + index * 0.1}>
-            {content.isUnfinished ? <input type="checkbox" /> : <input type="checkbox" checked />}
+            {content.isUnfinished 
+              ? <input onChange={() => updateToDo(list.id, index) } type="checkbox" /> 
+              : <input onChange={() => updateToDo(list.id, index) } type="checkbox" checked />
+            }
             <span>{content.item}</span>
             <span className="material-icons delete" 
               onClick={() => deleteToDo(content, list.id)}>
@@ -17,7 +20,7 @@ const List = ({ list, addNewTodo, deleteToDo }) => {
           </div>
         );
       })}
-      <NewTask addNewTodo={addNewTodo} listId={list.id} />
+      <NewTask addNewToDo={addNewToDo} listId={list.id} />
     </div>
   );
 };
