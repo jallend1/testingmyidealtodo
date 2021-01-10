@@ -11,7 +11,7 @@ const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
             <input
                 onChange={() => updateToDo(list.id, index)}
                 type="checkbox"
-                checked = {content.isUnfinished}
+                checked = {content.isFinished}
               />
             <span>{content.item}</span>
             <span

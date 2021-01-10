@@ -13,7 +13,7 @@ const Dashboard = () => {
     const listDetails = taskLists.find((item) => item.id === id);
     const newItem = {
       item: e.target[0].value.trim(),
-      isUnfinished: true,
+      isFinished: false,
     };
     // Adds new item onto corresponding Firebase list
     listDetails.content.push(newItem);
@@ -52,7 +52,7 @@ const Dashboard = () => {
   const updateToDo = (id, index) => {
     const listIndex = taskLists.findIndex((item) => item.id === id);
     const taskList = taskLists[listIndex].content;
-    taskList[index].isUnfinished = !taskList[index].isUnfinished;
+    taskList[index].isFinished = !taskList[index].isFinished;
     const db = firebase.firestore().collection("tasklists");
     db.doc(id).update({ content: taskList })
     setTaskLists(taskLists);
