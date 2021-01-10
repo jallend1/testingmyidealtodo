@@ -19,6 +19,7 @@ const Dashboard = () => {
     listDetails.content.push(newItem);
     const db = firebase.firestore().collection("tasklists");
     db.doc(id).update({ content: listDetails.content });
+    setTaskLists(taskLists);
     e.target.reset();
   };
 

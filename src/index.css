@@ -30,6 +30,10 @@ code {
   justify-content: space-between;
 }
 
+.list-item:hover {
+  color: purple;
+}
+
 .delete {
   color: red;
 }
