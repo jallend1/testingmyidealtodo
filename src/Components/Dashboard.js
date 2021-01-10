@@ -54,7 +54,17 @@ const Dashboard = () => {
     const taskList = taskLists[listIndex].content;
     taskList[index].isUnfinished = !taskList[index].isUnfinished;
     const db = firebase.firestore().collection("tasklists");
-    db.doc(id).update({ content: taskList });
+    db.doc(id).update({ content: taskList })
+    db.doc(id)
+      .get()
+      .then(doc => {
+        const listLocation = taskLists.findIndex(list => list.id === id);
+        taskLists[listLocation].content = doc.data().content;
+        setTaskLists(taskLists);
+        })
+      // console.log(doc.data());
+      console.log(taskLists)
+
   };
 
   useEffect(retrieveLists, [taskLists, setTaskLists]);
