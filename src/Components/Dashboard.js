@@ -13,7 +13,7 @@ const Dashboard = () => {
     const listDetails = taskLists.find((item) => item.id === id);
     const newItem = {
       item: e.target[0].value.trim(),
-      isUnfinished: true
+      isUnfinished: true,
     };
     // Adds new item onto corresponding Firebase list
     listDetails.content.push(newItem);
@@ -48,14 +48,14 @@ const Dashboard = () => {
   };
 
   //TODO Uncontrolled element! Remedy this mess!
-  
+
   const updateToDo = (id, index) => {
-    const listIndex = taskLists.findIndex(item => item.id === id);
-    const taskList = taskLists[listIndex].content
+    const listIndex = taskLists.findIndex((item) => item.id === id);
+    const taskList = taskLists[listIndex].content;
     taskList[index].isUnfinished = !taskList[index].isUnfinished;
-    const db = firebase.firestore().collection('tasklists');
-    db.doc(id).update({content: taskList})
-  }
+    const db = firebase.firestore().collection("tasklists");
+    db.doc(id).update({ content: taskList });
+  };
 
   useEffect(retrieveLists, [taskLists, setTaskLists]);
 
@@ -64,18 +64,20 @@ const Dashboard = () => {
       <main className="mdl-layout__content container">
         {/* Populates only active lists and not archived ones */}
         {taskLists.map((list) => {
-          if(list.isActive){
-            return <List 
-              list={list} 
-              key={list.id} 
-              listId={list.id} 
-              addNewToDo={addNewToDo} 
-              updateToDo={updateToDo}
-              deleteToDo={deleteToDo} />
+          if (list.isActive) {
+            return (
+              <List
+                list={list}
+                key={list.id}
+                listId={list.id}
+                addNewToDo={addNewToDo}
+                updateToDo={updateToDo}
+                deleteToDo={deleteToDo}
+              />
+            );
           }
           return null;
-        })
-      }
+        })}
       </main>
     </>
   );
