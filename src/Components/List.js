@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import NewTask from "./NewTask";
+import ListItem from './ListItem';
 
 const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
   const [hovering, setHovering] = useState(false);
@@ -10,29 +11,8 @@ const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
       <h4>By {list.author}</h4>
       {list.content.map((content, index) => {
         return (
-          <div 
-            className="list-item" 
-            key={list.id + index * 0.1}
-            onMouseEnter = {() => setHovering(true)}
-            onMouseLeave = {() => setHovering(false)}
-            >
-            <input
-                onChange={() => updateToDo(list.id, index)}
-                type="checkbox"
-                checked = {content.isFinished}
-              />
-            <span>{content.item}</span>
-            {/* If hovering, display item options on list item */}
-            {hovering ? 
-              (
-                <span
-                  className="material-icons delete"
-                  onClick={() => deleteToDo(content, list.id)} >
-                delete_forever
-                </span>)
-              : <div></div>
-            }
-          </div>
+          <ListItem list={list} content={content} index = {index} deleteToDo = {deleteToDo} updateToDo = {updateToDo} />
+          
         );
       })}
       <NewTask addNewToDo={addNewToDo} listId={list.id} />
