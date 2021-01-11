@@ -1,3 +1,6 @@
+// TODO Update Component is uncontrolled
+// TODO Extract todo lists into isolated context file?
+
 import firebase from "../config/firebase";
 import { useState, useEffect } from "react";
 import List from "./List";
