@@ -62,7 +62,7 @@ const Dashboard = () => {
     setTaskLists(taskLists);
   };
 
-  useEffect(retrieveLists, [taskLists, setTaskLists]);
+  useEffect(retrieveLists);
 
   return (
     <>
