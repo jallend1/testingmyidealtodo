@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState } from "react";
 import NewTask from "./NewTask";
-import ListItem from './ListItem';
+import ListItem from "./ListItem";
 
 const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
   const [hovering, setHovering] = useState(false);
@@ -11,8 +11,13 @@ const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
       <h4>By {list.author}</h4>
       {list.content.map((content, index) => {
         return (
-          <ListItem list={list} content={content} index = {index} deleteToDo = {deleteToDo} updateToDo = {updateToDo} />
-          
+          <ListItem
+            list={list}
+            content={content}
+            index={index}
+            deleteToDo={deleteToDo}
+            updateToDo={updateToDo}
+          />
         );
       })}
       <NewTask addNewToDo={addNewToDo} listId={list.id} />

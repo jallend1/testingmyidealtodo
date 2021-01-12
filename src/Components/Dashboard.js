@@ -58,7 +58,7 @@ const Dashboard = () => {
     const taskList = taskLists[listIndex].content;
     taskList[index].isFinished = !taskList[index].isFinished;
     const db = firebase.firestore().collection("tasklists");
-    db.doc(id).update({ content: taskList })
+    db.doc(id).update({ content: taskList });
     setTaskLists(taskLists);
   };
 
