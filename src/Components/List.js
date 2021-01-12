@@ -5,9 +5,26 @@ import ListItem from "./ListItem";
 const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
   const [hovering, setHovering] = useState(false);
 
+  const hoverState = () => {
+    return (
+      <header>
+        <h3>{list.title}</h3>
+        <span
+          className="material-icons delete"
+          >
+          edit
+        </span>
+      </header>
+    )
+  }
+
   return (
-    <div className="list">
-      <h3 key={list.id}>{list.title}</h3>
+    <div className="list"
+        onMouseEnter = {() => setHovering(true)}
+        onMouseLeave = {() => setHovering(false)}
+    >
+      {hovering ? hoverState() : <h3>{list.title}</h3>}
+      {/* <h3>{list.title}</h3> */}
       <h4>By {list.author}</h4>
       {list.content.map((content, index) => {
         return (
@@ -17,6 +34,7 @@ const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
             index={index}
             deleteToDo={deleteToDo}
             updateToDo={updateToDo}
+            key={list.id + index + 1}
           />
         );
       })}
