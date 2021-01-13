@@ -1,4 +1,3 @@
-// TODO Update Component is uncontrolled
 // TODO Extract todo lists into isolated context file?
 
 import firebase from "../config/firebase";
@@ -50,8 +49,6 @@ const Dashboard = () => {
       });
     }
   };
-
-  //TODO Uncontrolled element! Remedy this mess!
 
   const updateToDo = (id, index) => {
     const listIndex = taskLists.findIndex((item) => item.id === id);

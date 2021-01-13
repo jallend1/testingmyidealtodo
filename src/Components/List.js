@@ -7,25 +7,31 @@ const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
 
   const hoverState = () => {
     return (
-      <header className="list-header">
-        <h3>{list.title}</h3>
-        <span
-          className="material-icons edit"
-          >
-          edit
-        </span>
-      </header>
+      <>
+        <header className="list-header">
+          <h3>{list.title}</h3>
+          <span
+            className="material-icons edit"
+            >
+            edit
+          </span>
+        </header>
+          <h4>By {list.author}</h4>
+      </>
     )
   }
 
   return (
-    <div className="list"
-        onMouseEnter = {() => setHovering(true)}
-        onMouseLeave = {() => setHovering(false)}
-    >
-      {hovering ? hoverState() : <h3>{list.title}</h3>}
-      {/* <h3>{list.title}</h3> */}
-      <h4>By {list.author}</h4>
+    <div className="list">
+      <div onMouseEnter = {() => setHovering(true)} onMouseLeave = {() => setHovering(false)}>
+        {hovering ? hoverState() : (
+          <>
+            <h3>{list.title}</h3>
+            <h4>By {list.author}</h4>
+          </>
+          )
+          }
+      </div>
       {list.content.map((content, index) => {
         return (
           <ListItem
