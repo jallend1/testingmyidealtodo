@@ -17,10 +17,8 @@ const Dashboard = () => {
       item: e.target[0].value.trim(),
       isFinished: false,
     };
-    // Adds new item onto corresponding Firebase list
     listDetails.content.push(newItem);
-    const db = firebase.firestore().collection("tasklists");
-    db.doc(id).update({ content: listDetails.content });
+    updateTaskList(id, listDetails.content)
     setTaskLists(taskLists);
     e.target.reset();
   };
@@ -30,8 +28,7 @@ const Dashboard = () => {
     const listContents = taskLists[listIndex].content;
     const itemIndex = listContents.indexOf(itemToDelete); // Locates appropriate list item
     listContents.splice(itemIndex, 1); // Removes it
-    const db = firebase.firestore().collection("tasklists");
-    db.doc(id).update({ content: listContents });
+    updateTaskList(id, listContents)
   };
 
   //Pulls existing tasklists from Firebase and puts them in state
@@ -52,16 +49,16 @@ const Dashboard = () => {
 
   const completeToDo = (id, index, target) => {
     const listIndex = taskLists.findIndex((item) => item.id === id);
-    console.log(target);
-    if(target === 'INPUT'){
-      const taskList = taskLists[listIndex].content;
-      taskList[index].isFinished = !taskList[index].isFinished;
-      const db = firebase.firestore().collection("tasklists");
-      db.doc(id).update({ content: taskList });
-    }
-
+    const taskList = taskLists[listIndex].content;
+    taskList[index].isFinished = !taskList[index].isFinished;
+    updateTaskList(id, taskList)
     setTaskLists(taskLists);
   };
+
+  const updateTaskList = (id, newTaskList) => {
+    const db = firebase.firestore().collection('tasklists');
+    db.doc(id).update({content: newTaskList})
+  }
 
   useEffect(retrieveLists);
 
