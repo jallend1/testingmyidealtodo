@@ -50,12 +50,16 @@ const Dashboard = () => {
     }
   };
 
-  const updateToDo = (id, index) => {
+  const completeToDo = (id, index, target) => {
     const listIndex = taskLists.findIndex((item) => item.id === id);
-    const taskList = taskLists[listIndex].content;
-    taskList[index].isFinished = !taskList[index].isFinished;
-    const db = firebase.firestore().collection("tasklists");
-    db.doc(id).update({ content: taskList });
+    console.log(target);
+    if(target === 'INPUT'){
+      const taskList = taskLists[listIndex].content;
+      taskList[index].isFinished = !taskList[index].isFinished;
+      const db = firebase.firestore().collection("tasklists");
+      db.doc(id).update({ content: taskList });
+    }
+
     setTaskLists(taskLists);
   };
 
@@ -73,7 +77,7 @@ const Dashboard = () => {
                 key={list.id}
                 listId={list.id}
                 addNewToDo={addNewToDo}
-                updateToDo={updateToDo}
+                completeToDo={completeToDo}
                 deleteToDo={deleteToDo}
               />
             );

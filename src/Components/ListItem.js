@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const ListItem = ({list, content, index, deleteToDo, updateToDo}) => {
+const ListItem = ({list, content, index, deleteToDo, completeToDo}) => {
   const [hovering, setHovering] = useState(false);
   const hoverState = () => (
     <span
@@ -17,7 +17,7 @@ const ListItem = ({list, content, index, deleteToDo, updateToDo}) => {
       onMouseLeave = {() => setHovering(false)}
       >
       <input
-          onChange={() => updateToDo(list.id, index)}
+          onChange={(e) => completeToDo(list.id, index, e.target.tagName)}
           type="checkbox"
           checked = {content.isFinished}
         />

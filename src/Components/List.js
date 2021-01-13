@@ -2,7 +2,7 @@ import { useState } from "react";
 import NewTask from "./NewTask";
 import ListItem from "./ListItem";
 
-const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
+const List = ({ list, addNewToDo, deleteToDo, completeToDo }) => {
   const [hovering, setHovering] = useState(false);
 
   const hoverState = () => {
@@ -10,11 +10,9 @@ const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
       <>
         <header className="list-header">
           <h3>{list.title}</h3>
-          <span
-            className="material-icons edit"
-            >
+          <button className="material-icons edit" onClick={(e) => completeToDo(list.id, null, e.target.tagName)}>
             edit
-          </span>
+          </button>
         </header>
           <h4>By {list.author}</h4>
       </>
@@ -39,7 +37,7 @@ const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
             content={content}
             index={index}
             deleteToDo={deleteToDo}
-            updateToDo={updateToDo}
+            completeToDo={completeToDo}
             key={list.id + index + 1}
           />
         );
