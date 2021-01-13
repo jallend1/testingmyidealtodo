@@ -7,10 +7,10 @@ const List = ({ list, addNewToDo, deleteToDo, updateToDo }) => {
 
   const hoverState = () => {
     return (
-      <header>
+      <header className="list-header">
         <h3>{list.title}</h3>
         <span
-          className="material-icons delete"
+          className="material-icons edit"
           >
           edit
         </span>

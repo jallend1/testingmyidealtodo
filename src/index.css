@@ -25,7 +25,7 @@ code {
   margin: 1em;
 }
 
-header {
+.list-header {
   display: flex;
   justify-content: space-between;
 }
