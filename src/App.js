@@ -5,10 +5,11 @@ import Dashboard from "./Components/Dashboard";
 import Archive from "./Components/Archive";
 import About from "./Components/About";
 
-import ListContext from './contexts/ListContext';
+import {ListContext} from './contexts/ListContext';
 
 function App() {
   const lists =[];
+  console.log(ListContext.Provider)
   return (
     <>
       <div className="mdl-layout mdl-js-layout">

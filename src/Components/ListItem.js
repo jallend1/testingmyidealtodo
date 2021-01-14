@@ -17,7 +17,7 @@ const ListItem = ({list, content, index, deleteToDo, completeToDo}) => {
       onMouseLeave = {() => setHovering(false)}
       >
       <input
-          onChange={(e) => completeToDo(list.id, index, e.target.tagName)}
+          onChange={() => completeToDo(list.id, index)}
           type="checkbox"
           checked = {content.isFinished}
         />

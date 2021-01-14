@@ -1,7 +1,5 @@
 import { createContext } from 'react';
 
-const ListContext = createContext({
-    lists: []
+export const ListContext = createContext({
+    lists: ['hello', 'world']
 });
-
-export default ListContext;

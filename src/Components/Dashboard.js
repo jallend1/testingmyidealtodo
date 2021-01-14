@@ -33,6 +33,7 @@ const Dashboard = () => {
 
   //Pulls existing tasklists from Firebase and puts them in state
   const retrieveLists = () => {
+    console.log('running!')
     const db = firebase.firestore().collection("tasklists");
     if (taskLists.length === 0) {
       db.onSnapshot((snapshot) => {
@@ -47,7 +48,7 @@ const Dashboard = () => {
     }
   };
 
-  const completeToDo = (id, index, target) => {
+  const completeToDo = (id, index) => {
     const listIndex = taskLists.findIndex((item) => item.id === id);
     const taskList = taskLists[listIndex].content;
     taskList[index].isFinished = !taskList[index].isFinished;
